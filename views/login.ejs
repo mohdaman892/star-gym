@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR GYM</title>
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/auth.js" type="module"></script>
+</head>
+<body>
+    
+<!-- header section starts      -->
+
+<header class="header">
+
+    <a href="#" class="logo"> <span>STAR</span>GYM </a>
+
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+    <nav class="navbar">
+        <a href="index#home">home</a>
+        <a href="index#about">about</a>
+        <a href="index#features">features</a>
+        <a href="index#pricing">pricing</a>
+        <a href="index#trainers">trainers</a>
+        <a href="index#blogs">blogs</a>
+        <a href="login">Admin Console</a>
+    </nav>
+
+</header>
+
+<!-- header section ends     -->
+
+
+<!-- Login Section starts -->
+<section class="login" id="login">
+    <form method="post" action="/editableIndex">
+        <input type="hidden" name="name" id="hidden-field" value="" /> 
+        <button type="submit">Navigate to Edit the index page</button>
+    </form>
+    <button type="submit" id="signInButton">Sign In with Google!</button>
+</section>
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a class="links" href="#home">home</a>
+            <a class="links" href="#about">about</a>
+            <a class="links" href="#features">features</a>
+            <a class="links" href="#pricing">pricing</a>
+            <a class="links" href="#trainers">trainers</a>
+            <a class="links" href="#blogs">socials</a>
+        </div>
+
+        <div class="box">
+            <h3>opening hours</h3>
+            <p> monday : <i> 7:00am - 10:30pm </i> </p>
+            <p> tuesday : <i> 7:00am - 10:30pm </i> </p>
+            <p> wednesday : <i> 7:00am - 10:30pm </i> </p>
+            <p> friday : <i> 7:00am - 10:30pm </i> </p>
+            <p> saturday : <i> 7:00am - 10:30pm </i> </p>
+            <p> sunday : <i> closed </i> </p>
+        </div>
+
+        <div class="box">
+            <h3>opening hours</h3>
+            <p> <i class="fas fa-phone"></i> +91 8090505700 </p>
+            <p> <i class="fas fa-envelope"></i> stargymandfitness@gmail.com </p>
+            <p> <i class="fas fa-map"></i> 1/613 Sec-J, Kursi Road, Jankipuram, Lucknow, Near Gudamba Police Station </p>
+            <p> <i class="fas fa-map"></i> Shukla Complex, 23A, 23 A-B, Sitapur Rd, near Bright Motors, Mausam Bagh, Triveni Nagar, Lucknow, Uttar Pradesh 226020 </p>
+            <div class="share">
+                <a href="https://www.facebook.com/StarGymLucknow" class="fab fa-facebook-f"></a>
+                <a href="https://www.youtube.com/channel/UCu6GNukjXCOGC7c3livEtlg" class="fab fa-youtube"></a>
+            </div>
+        </div>
+
+        <div class="box">
+            <h3>Join Today</h3>
+            <div class="enquiry-form" id="enquiryform">
+                <p>We'll get back to you</p>
+                <form  enctype="text/plain" id="enquiry-form">
+                    <input type="number" name="" class="fa-phone" placeholder="enter your Mobile number" id="form-phone" required>
+                    <br>
+                    <br>
+                    <input type="text" name=""  placeholder="enter your Name" id="form-name" required>
+                    <br>
+                    <br>
+                    <input type="text" name=""  placeholder="enter any comments!" id="form-comments">
+                    <br>
+                    <br>
+                    <input type="submit" value="Send Enquiry" class="btn" id="sendEnquiry">
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<div class="credit"> created by <span>Aman</span> | all rights reserved! </div>
+
+<!-- footer section ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+</body>
+</html>
