@@ -17,6 +17,8 @@ const firebaseConfig =  {"apiKey": process.env.apiKey,
 "databaseURL" : process.env.databaseURL,
 }
 
+console.log(UID);
+console.log(firebaseConfig);
 
 // Returns a middleware to serve favicon
 app.use(favicon(__dirname + '/favicon.ico'));
