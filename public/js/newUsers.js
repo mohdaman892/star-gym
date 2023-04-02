@@ -6,23 +6,21 @@
     import { getStorage, uploadBytes, getDownloadURL} from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js'
     import {ref as sref }  from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js'
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-    const firebaseConfig = {
-      apiKey: "AIzaSyCNDONYJMyiLV3NxBNcO0MqSFy--17kg64",
-      authDomain: "stargym-19c81.firebaseapp.com",
-      projectId: "stargym-19c81",
-      storageBucket: "stargym-19c81.appspot.com",
-      messagingSenderId: "946227482449",
-      appId: "1:946227482449:web:adb94cb87469315cab4d70",
-      measurementId: "G-GJPGWDBWSR",
-      databaseURL: "https://stargym-19c81-default-rtdb.asia-southeast1.firebasedatabase.app",
-    };
-  
     // Initialize Firebase
+    const loc = window.location;
+    const server = loc.origin;
+    const response = await fetch(server+'/fire');
+    const config = await response.json();
+    const firebaseConfig = {
+        apiKey: config["apiKey"],
+        authDomain: config["authDomain"],
+        projectId: config["projectId"],
+        storageBucket: config["storageBucket"],
+        messagingSenderId: config["messagingSenderId"],
+        appId: config["appId"],
+        measurementId: config["measurementId"],
+        databaseURL: config["databaseURL"],
+      };
     const app = initializeApp(firebaseConfig);  
     const analytics = getAnalytics(app);
     const db = getDatabase();
@@ -30,54 +28,34 @@
     const storage = getStorage(app);
     const storageRef = sref(storage, 'image1');
 
-
-    
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
-        console.log(uid);
-        if(uid !== `e7nDqhJTD1Xps6dNOtwa6VnbiiS2`) {
-            alert("Unauthenticated User")
-            const loc= window.location;
-            const server = loc.origin;
-            const url = server + `/index`;
-            window.location.replace(url);
-        }
-        // ...
-      } else {
-        // User is signed out
-        // ...
-        console.log("User signed out")
-        // alert("Admin User is not signed in");
-        const loc= window.location;
-        const server = loc.origin;
-        const url = server + `/index`;
-        window.location.replace(url);
-      }
-    });
-
-
-
-
-    const usersDiv = document.getElementById("userslistdiv");
-    console.log(usersDiv);
+    const cardsDiv = document.getElementById("cards-section");
     const starCountRef = ref(db, 'New Requests/');
-    onValue(starCountRef, (snapshot) => {
+    onValue(starCountRef, async (snapshot) => {
         const data = snapshot.val();
-        console.log(data);
         for(const key in data){
-            const listData = document.createElement("li");
-            listData.setAttribute("id", "user-list");
-            listData.innerHTML = "<span><label>Name:</label><span>" + data[key]['Name'] + "</span><label>Phone:<span>"+ data[key]['phone'] +"</span></label><label>Comments:</label><span>" + data[key]['comments'] + "</span></span>"
-            usersDiv.appendChild(listData)
+            const card = document.createElement("article");
+            card.setAttribute("class", "card");
+            const obj = {"name": data[key]['Name']}
+            const loc = window.location;
+            const server = loc.origin;
+            const respo = await fetch(server+'/getGender', {
+              method: 'POST',
+              body: JSON.stringify(obj),
+              headers: {
+                "Content-type": "application/json"
+              }
+            });
+            const responseText = await respo.text();
+            var gen = "male"
+            if(responseText==="female") {
+                gen = "female"
+            }
+            card.innerHTML = "<picture><img id='user-card-pic' src='images/"+gen+".jpg' alt='Male/Boy'></picture><div class='card-content'><p class='card-title'>"+data[key]["Name"]+"</p><p class='card-phone'>"+data[key]["phone"]+"</p><p class='card-para'>"+data[key]["comments"]+"</p></div>"
+            cardsDiv.appendChild(card);
         }
     });
-
     document.getElementById("deleteButton").addEventListener("click", function f(){
-            console.log("Deleting all new requests");
             const updates = {};
             updates['New Requests'] = {}
             update(ref(db), updates);

@@ -26,13 +26,12 @@
     <div id="menu-btn" class="fas fa-bars"></div>
 
     <nav class="navbar">
-        <a href="index.html#home">home</a>
-        <a href="index.html#about">about</a>
-        <a href="index.html#features">features</a>
-        <a href="index.html#pricing">pricing</a>
-        <a href="index.html#trainers">trainers</a>
-        <a href="index.html#blogs">blogs</a>
-        <a href="/login">Admin Console</a>
+        <a href="#">home</a>
+        <a href="#">about</a>
+        <a href="#">features</a>
+        <a href="#">pricing</a>
+        <a href="#">trainers</a>
+        <a href="#">blogs</a>
     </nav>
 
 </header>
@@ -41,16 +40,16 @@
 
 
 <!-- Login Section starts -->
-<section class="usersSection" id="login">
-    <div class="usersList" id="userslistdiv">
-    </div>
+
+<div class="centered">
+    <section class="cards" id="cards-section">
 </section>
-
-
-<div>
-    <button id="deleteButton">Delete all Requests!</button>
 </div>
-<!-- footer section starts  -->
+
+
+<div id="save-changes-button-div">
+    <button type="submit" id="deleteButton">Delete all Requests!</button>
+</div>
 
 <section class="footer">
 
@@ -58,12 +57,12 @@
 
         <div class="box">
             <h3>quick links</h3>
-            <a class="links" href="#home">home</a>
-            <a class="links" href="#about">about</a>
-            <a class="links" href="#features">features</a>
-            <a class="links" href="#pricing">pricing</a>
-            <a class="links" href="#trainers">trainers</a>
-            <a class="links" href="#blogs">blogs</a>
+            <a class="links" href="#">home</a>
+            <a class="links" href="#">about</a>
+            <a class="links" href="#">features</a>
+            <a class="links" href="#">pricing</a>
+            <a class="links" href="#">trainers</a>
+            <a class#">socials</a>
         </div>
 
         <div class="box">
@@ -78,34 +77,28 @@
 
         <div class="box">
             <h3>opening hours</h3>
-            <p> <i class="fas fa-phone"></i> +123-456-7890 </p>
-            <p> <i class="fas fa-phone"></i> +111-222-3333 </p>
-            <p> <i class="fas fa-envelope"></i> shaikhanas@gmail.com </p>
-            <p> <i class="fas fa-map"></i> mumbai, india - 400104 </p>
+            <p> <i class="fas fa-phone"></i> +91 8090505700 </p>
+            <p> <i class="fas fa-envelope"></i> stargymandfitness@gmail.com </p>
+            <p> <i class="fas fa-map"></i> 1/613 Sec-J, Kursi Road, Jankipuram, Lucknow, Near Gudamba Police Station </p>
+            <p> <i class="fas fa-map"></i> Shukla Complex, 23A, 23 A-B, Sitapur Rd, near Bright Motors, Mausam Bagh, Triveni Nagar, Lucknow, Uttar Pradesh 226020 </p>
             <div class="share">
-                <a href="#" class="fab fa-facebook-f"></a>
-                <a href="#" class="fab fa-twitter"></a>
-                <a href="#" class="fab fa-linkedin"></a>
-                <a href="#" class="fab fa-pinterest"></a>
+                <a href="https://www.facebook.com/StarGymLucknow" class="fab fa-facebook-f"></a>
+                <a href="https://www.youtube.com/channel/UCu6GNukjXCOGC7c3livEtlg" class="fab fa-youtube"></a>
             </div>
         </div>
 
         <div class="box">
-            <h3>newsletter</h3>
-            <p>subscribe for latest updates</p>
-            <form action="">
-                <input type="email" name="" class="email" placeholder="enter your email" id="">
-                <input type="submit" value="subscribe" class="btn">
+            <h3>Get latest user requests</h3>
+            <form method="post" action="/newUsers">
+                <input type="hidden" name="id" id="hidden-id-field" value="" /> 
+                <button type="submit" id="get-users-button">Click Here</button>
             </form>
         </div>
 
     </div>
 
 </section>
-
-<div class="credit"> created by <span>mr. web designer</span> | all rights reserved! </div>
-
-<!-- footer section ends -->
+<div class="credit"> created by <span>Aman</span> | all rights reserved! </div>
 
 
 

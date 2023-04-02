@@ -5,34 +5,28 @@
     import { getDatabase, ref, onValue, child, get, push, update} from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
     import { getAuth, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js';
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
-    // Your web app's Firebase configuration
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCNDONYJMyiLV3NxBNcO0MqSFy--17kg64",
-      authDomain: "stargym-19c81.firebaseapp.com",
-      projectId: "stargym-19c81",
-      storageBucket: "stargym-19c81.appspot.com",
-      messagingSenderId: "946227482449",
-      appId: "1:946227482449:web:adb94cb87469315cab4d70",
-      measurementId: "G-GJPGWDBWSR",
-      databaseURL: "https://stargym-19c81-default-rtdb.asia-southeast1.firebasedatabase.app",
-    };
-  
     // Initialize Firebase
+    const loc = window.location;
+    const server = loc.origin;
+    const response = await fetch(server+'/fire');
+    const config = await response.json();
+    const firebaseConfig = {
+        apiKey: config["apiKey"],
+        authDomain: config["authDomain"],
+        projectId: config["projectId"],
+        storageBucket: config["storageBucket"],
+        messagingSenderId: config["messagingSenderId"],
+        appId: config["appId"],
+        measurementId: config["measurementId"],
+        databaseURL: config["databaseURL"],
+      };
     const app = initializeApp(firebaseConfig);  
     const analytics = getAnalytics(app);
     const db = getDatabase();
     const dbRef = ref(getDatabase());
 
-
-
-    document.getElementById('signInButton').addEventListener("click", function f() {
+    document.getElementById('login-with-google-btn').addEventListener("click", function f() {
         const provider = new GoogleAuthProvider();
-        console.log(provider);
         const auth = getAuth();
      return signInWithPopup(auth, provider)
     .then((result) => {
@@ -41,8 +35,9 @@
         const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        console.log(user);
         document.getElementById('hidden-field').setAttribute("value", user.uid);
+        document.getElementById('name-after-login').textContent = `Welcome ` + user.displayName;
+        document.getElementById('name-after-login').style.fontSize = "xx-large";
         // IdP data available using getAdditionalUserInfo(result)
         // ...
     }).catch((error) => {

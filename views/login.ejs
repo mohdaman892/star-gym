@@ -34,20 +34,41 @@
         <a href="index#blogs">blogs</a>
         <a href="login">Admin Console</a>
     </nav>
-
 </header>
 
 <!-- header section ends     -->
-
+<div id="steps-div">
+    <ul id="steps-list">
+        <li id="steps-lis-item">1. Click on Sign in with Google button to Sign In!</li>
+        <li>2. After Signing in click on the below button to start Editing</li>
+        <br>
+        <li id="name-after-login"></li>
+    </ul>
+</div>
 
 <!-- Login Section starts -->
-<section class="login" id="login">
-    <form method="post" action="/editableIndex">
-        <input type="hidden" name="name" id="hidden-field" value="" /> 
-        <button type="submit">Navigate to Edit the index page</button>
-    </form>
-    <button type="submit" id="signInButton">Sign In with Google!</button>
-</section>
+    <div id="login-div">
+        <div id="inner-login-div">
+            <form method="post" action="/editableIndex" id="login-form">
+                <input type="hidden" name="name" id="hidden-field" value="" /> 
+                <button type="submit" id="nav-to-edit">Navigate to Edit the index page</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+        
+            <button type="submit" class="login-with-google-btn" id="login-with-google-btn">Sign In with Google!</button>
+            <br>
+            <br>
+        </div>
+
+    </div>
+
+<br>
+<br>
+<br>
+<br>
 
 <!-- footer section starts  -->
 
