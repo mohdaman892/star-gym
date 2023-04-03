@@ -46,7 +46,6 @@
           }
         });
         const responseText = await respo.text();
-        console.log(responseText);
         if(responseText!=="Yes") {
             alert("Unauthenticated User")
             const loc= window.location;

@@ -17,8 +17,6 @@ const firebaseConfig =  {"apiKey": process.env.apiKey,
 "databaseURL" : process.env.databaseURL,
 }
 
-console.log(UID);
-console.log(firebaseConfig);
 
 // Returns a middleware to serve favicon
 app.use(favicon(__dirname + '/favicon.ico'));
@@ -30,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 var jsonParser = bodyParser.json()
  
 // create application/x-www-form-urlencoded parser
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var urlencodedParser = bodyParser.urlencoded({ extended: true })
   
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'))
@@ -48,8 +46,8 @@ app.get('/fire', function(req, res){
     res.send(firebaseConfig);
 })
 
-app.post('/verifyUid',urlencodedParser, function(req,res){
-    if(req.body['name']!=UID) res.send("Yes")
+app.post('/verifyUid',jsonParser, function(req,res){
+    if(req.body['name']==UID) res.send("Yes")
     else res.send("No")
 })
 
@@ -60,7 +58,7 @@ app.post('/getGender',jsonParser, function(req,res){
 })
 
 app.post('/editableIndex',urlencodedParser, function(req, res){
-    if(req.body['name']!=UID) res.render('userError')
+    if(req.body['name']!=1) res.render('userError')
     else res.render('editableIndex')
 })
 

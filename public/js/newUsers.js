@@ -29,6 +29,37 @@
     const storageRef = sref(storage, 'image1');
 
     const auth = getAuth();
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        document.getElementById('hidden-id-field').setAttribute("value", uid);
+        const obj = {"name": uid}
+        const loc = window.location;
+        const server = loc.origin;
+        const respo = await fetch(server+'/verifyUid', {
+          method: 'POST',
+          body: JSON.stringify(obj),
+          headers: {
+            "Content-type": "application/json"
+          }
+        });
+        const responseText = await respo.text();
+        if(responseText!=="Yes") {
+            alert("Unauthenticated User")
+            const loc= window.location;
+            const server = loc.origin;
+            const url = server + `/index`;
+            window.location.replace(url);
+        }
+      } else {
+        const loc= window.location;
+        const server = loc.origin;
+        const url = server + `/index`;
+        window.location.replace(url);
+      }
+    });
     const cardsDiv = document.getElementById("cards-section");
     const starCountRef = ref(db, 'New Requests/');
     onValue(starCountRef, async (snapshot) => {
